@@ -132,7 +132,7 @@ namespace Lambdas {
         //    localComp
         //);
 
-        bool flag = true;
+       // bool flag = true;
 
         std::sort(
             vec.begin(),

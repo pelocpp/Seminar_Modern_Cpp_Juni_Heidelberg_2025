@@ -34,12 +34,18 @@ namespace SharedPointer {
 
     static void test_01() {
 
+        //std::shared_ptr<int> ptrXXX;
+        //std::shared_ptr<int> ptrYYY;
+        //ptrXXX = ptrYYY;
+
+
+
         // 'ptr1' is a shared pointer for a new instance of an int
-        std::shared_ptr<int> ptr1{ new int{ 123 } };
+       // std::shared_ptr<int> ptr1{ new int{ 123 } };
         // or
-        // std::shared_ptr<int> ptr1{ std::make_shared<int>(123) };
+      //  std::shared_ptr<int> ptr1{ std::make_shared<int>(123) };
         // or
-        // auto ptr1{ std::make_shared<int>(123) };
+        auto ptr1{ std::make_shared<int>(123) };
 
         // access value behind smart pointer
         int n{ *ptr1 };

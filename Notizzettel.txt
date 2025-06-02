@@ -24,6 +24,19 @@ Back-to-the-Roots
 
 ==============================================
 
+Todo:
+
+emplace 
+
+noexcept
+
+std::swap - Idiom
+
+RAII
+
+==============================================
+
+
 C++ 11
 
 C++ 17
@@ -167,4 +180,211 @@ Jedes Lambda ist vom Typ einer (lokalen) Klasse.
 =========================================
 
 Cpp Insights
+
+=========================================
+
+Move Semantik
+-------------
+
+a) Neue Referenz: RValue Referenz
+
+Ab C++ 11: Einen zweiten Referenz-Typus:   RValue
+
+Einen für anonyme Objekte.    // Whyyyyyyyyyyyyyyyyyyyyyyyy
+
+b) Move Semantik
+
+Referenz:    Ist ein Alias-Name eines vorhandenen Objekts.
+
+================================================
+
+Man möchte unnötige Kopien vermeiden.
+
+================================================
+
+... E60    ... temp. Objekt am Stack ... wird freigegeben
+... ED0    ... im Vektor
+
+================================================
+
+Rule-of-Three:   Um double - free / delete zu vermeiden !!!
+
+Um eine echte Kopie anzulegen.
+
+... 1024
+
+
+... 1C0
+
+==============================================
+
+... 310
+
+=============================================
+
+new  ===> In Modern C++ sollte man new nicht verwenden.
+
+Sondern:  Smart Pointer
+
+=============================================
+
+In Modern C++ sollte man new nicht verwenden.
+
+
+Wording:  Classic Pointer  // Raw Pointer.
+
+Whyyyyyyyyyyyyyyyy:  pro new erwarten wir ein delete.
+
+Suchen nach fehlenden sind:  
+
+Death March von Ed Yourdon.
+
+Lösung des fehlenden deletes:
+
+Idee:
+
+i) OO:  Klassen und Objekten
+
+ii) Konstruktoren
+    Destruktoren
+
+iii) Beobachtung: Wann wird ein Destruktor aufgerufen?
+
+    Am Ende des Scopes 
+    // bei Objekten am Stack.
+
+    Deterministisch.
+
+iv) Ein Pointer von new: 
+
+    Hüllenobjekt / Wrapper versteckt:
+
+    ==> Konstruktor
+    ==> Destruktor:   delete
+
+a) auto_ptr
+
+b) std::unique_ptr
+   std::shared_ptr  // std::weak_ptr
+
+================================================
+
+Legacy: Vorsicht :)
+
+Neue Module ....
+
+================================================
+
+i)    std::unique_ptr
+
+Hat im Programm zu EINEM Zeitpunkt genau
+EINEN Besitzer.
+
+ii)   std::shared_ptr  // std::weak_ptr
+
+Kann im Programm zu EINEM Zeitpunkt mehrere
+Besitzer haben.
+
+================================================
+
+std::unique_ptr
+
+============================================
+
+std::unique_ptr:
+
+geht mit Array:
+
+std::unique_ptr<int[]> ptr{ new int[100] };
+
+int* begin = ptr.get();
+
+begin[15]
+
+
+VOOOOOOOOOORSICHT:
+
+Da gibt es eigentlich fast keinen Grund dafür,
+weil die vector auch tut !!!!!!!!!!!!!!!!!
+
+Der einzige Grund:   
+
+Ein Block an Speicher, der NICHT initialisiert ist:
+
+new ElemTyp[100]
+
+std::malloc // std::free
+
+Uninitialized memory algorithms
+uninitialized_copy
+uninitialized_fill
+uninitialized_move
+(C++17)
+uninitialized_copy_n
+(C++11)
+uninitialized_fill_n
+uninitialized_move_n
+(C++17)
+construct_at
+(C++20)
+uninitialized_default_construct
+(C++17)
+uninitialized_value_construct
+(C++17)
+destroy
+(C++17)
+uninitialized_default_construct_n
+(C++17)
+uninitialized_value_construct_n
+(C++17)
+destroy_n
+(C++17)
+destroy_at
+(C++17)
+
+============================================
+
+
+Smart Pointer:
+
+new // delete ===> Smart Pointer  ==>  Rule-of-Zero.
+
+STL Container // Algorithmen
+Smart Pointer (kein new/delete)  ==> Move Semantik.
+
+============================================
+
+Pufferüberlauf:
+
+NICHT:  C-Style Array:
+
+int numers[100];
+......
+int index = 101;
+numbers[index] = 999;
+
+Unterstützung:
+
+Go for std::vector
+
+Go for std::array:    STL Klasse
+
+=================================================
+
+Wehrmutstropfen
+
+Der std::shared_ptr funktioniert nicht immer :-((((((((
+
+Nicht immer wird delete aufgerufen, wenn es der Fall sein sollte.
+
+Wenn der Referenzzähler auf 0 geht, wird delete aufgerufen !!! Stimmt!
+
+Aber: Der Referenzzähler geht nicht immer auf 0 ??????? !!!!!!
+
+Hat was mit Zirkulärem zu tun ;)
+
+i)   std::weak_ptr
+
+ii)  Whyyyyyyyyyyyyyyyyyyyyyyy
+
 

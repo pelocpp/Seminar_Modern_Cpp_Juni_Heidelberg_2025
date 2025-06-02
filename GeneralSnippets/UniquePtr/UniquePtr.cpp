@@ -4,6 +4,8 @@
 
 module;
 
+#include <memory>
+
 #include <stdio.h>
 #include <windows.h>
 
@@ -13,8 +15,14 @@ namespace UniquePointerGeneral {
 
     static std::unique_ptr<int> loadUniquePointer()
     {
+
+        std::unique_ptr<int> dummy;
+
         std::unique_ptr<int> ptr{ std::make_unique<int>(100) };
+        
         return ptr;
+
+      //  return std::move(ptr); // NIEMALSSSSSSSSSSSSSSSS
     }
 
     static void storeUniquePointer(std::unique_ptr<int>& ptr)
@@ -23,8 +31,8 @@ namespace UniquePointerGeneral {
         (*ptr)++;
         std::println("*ptr:    {}", *ptr);
 
-        // take ownership right now:
-        // std::unique_ptr<int> ptr2{ std::move(ptr) };
+        // take ownership right now:  Uuuuuuups  // Absurd
+     //   std::unique_ptr<int> ptr2{ std::move(ptr) };
     }
 
     static void storeUniquePointerSafe(const std::unique_ptr<int>& ptr)
@@ -43,6 +51,8 @@ namespace UniquePointerGeneral {
         (*ptr)++;
         std::println("*ptr:    {}", *ptr);
 
+       // delete ptr;
+
         // A) taking ownership right now: MAKES NO SENSE
         // B) delete: Under no circumstances: 
         //    pointer is owned by accompanied Unique Ptr
@@ -50,6 +60,18 @@ namespace UniquePointerGeneral {
 
     static void test_01()
     {
+        //std::unique_ptr<int> ptrXXX;
+        //std::unique_ptr<int> ptrYYY;
+        //ptrXXX = ptrYYY;
+
+        // new  / delete
+        // File: open / close
+
+        auto size1 = sizeof(int*);
+        auto size2 = sizeof(std::unique_ptr<int>);
+        auto size3 = sizeof(std::shared_ptr<int>);
+
+
         // create a unique_ptr to an int with value 123
         std::unique_ptr<int> ptr1{ new int{ 123 } };
         // or
@@ -152,6 +174,8 @@ namespace UniquePointerWrappingResourceHandles {
             }
         }
     };
+
+   // using FILE_UniquePtr2 = std::unique_ptr<FILE, [](){}>;
 
     using FILE_UniquePtr = std::unique_ptr<FILE, FILE_Deleter>;
 

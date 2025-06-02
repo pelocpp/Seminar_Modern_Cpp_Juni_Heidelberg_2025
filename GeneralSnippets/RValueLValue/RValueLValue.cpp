@@ -19,22 +19,32 @@ namespace LValueRValue {
     static void test01() {
 
         std::string a = "Hello";
+    //    std::string* pa = new std::string("Hello");
+
         std::string b = " World";
 
+        std::string& ra = a;
+
         sayHello(a);
-        sayHello(a + b);
+
+       // std::string tmp = a + b;
+
+        sayHello(a + b);  // "Hello World"
     }
 
     // -------------------------------------------------------------------
 
     static void helper(std::string&& message)
     {
-        sayHello(message);
-        // sayHello(std::move(message));    // casting an lvalue to an rvalue
+        sayHello( std::move (message ) );  // sayHello &&: Typgleichheit
+                            // sayHello & : Hmmm, das an. Obj. hat einen NAMEN
     }
 
     static void test02()
     {
+        std::string s = "ABC";
+
+        // helper(s);
         helper(std::string("Where are we going ..."));
     }
 
