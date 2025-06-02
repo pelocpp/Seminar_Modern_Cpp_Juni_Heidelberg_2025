@@ -1,0 +1,170 @@
+=============================================
+
+Seminar Modern C++
+
+Guten Morgen
+
+Peter Loos
+
+=============================================
+
+Github
+
+github.com/pelocpp
+
+https://github.com/pelocpp
+
+35+ Jahre
+
+Entwicklung // Schulung // Training
+
+C/C++, Java,  C#,  Mobile Progr. (Flutter)
+
+Back-to-the-Roots
+
+==============================================
+
+C++ 11
+
+C++ 17
+
+==============================================
+
+auto:
+
+A) Variablen vereinbaren
+B) Rückgabetyp von Funktionen
+C) Als Datentyp für Parameter ( templates )
+
+// ==================================================
+
+Idiome:
+
+multi
+
+Objekt-orientiert
+GP // generische Progr.
+funktional
+
+Bjarne Stroustrup
+
+Alexander Alexandrowitsch Stepanow // Gen. Progr.
+
+Bjarne Stroustrup ===> Bibliothek: C++ // template STL Standard TEMPLATE Libr.
+
+=====================================
+
+auto
+
+Vorsicht / Achtung:
+
+====================================
+
+std::vector <int> numbers;  // 10000
+
+Daten:
+
+== Stack
+== Heap  // <====================
+== Globales Datensegment
+
+// zu klein, umkopieren ...
+
+std::vector:   per Def:  continuous // dicht aneinanderliegend
+
+std::deque:  NICHT dicht ...
+
+IDENTISCH;
+
+char data [100000];
+
+
+std::vector<char> data;
+
+data[index] = ???;   // Anfangsadresse + offset
+
+resize ();
+
+======================================
+
+C:
+
+C versus C++:
+
+a) Robustheit:  std::vector
+
+b) Performance: 
+
+STL - Algorithmen
+
+
+
+
+std::vector<char> data;   // LEER
+
+push_back / 1 Element
+
+std::vector<char> data (10);
+
+Anwender:  Leer
+
+Um wieviel:  neue Länge = alte Länge * 1.5;
+
+Beispiel: 100 // 150 // 275
+
+
+======================================
+
+Lambda:
+
+== Sprachliches Mittel
+
+== STL - Algorithmen 
+
+== Optimierungspotential:  Inline 
+
+==> NOT : Gebrauchsanweisung
+
+=> Whyyyyyy // Howwww
+
+Modern C++:
+
+Viele neue Sachen  .... vieles wird auf Vorhandenes umgesetzt.
+
+Aufrufbares Objekt
+
+Funktor
+
+operator():  Wozu ...
+
+Das ist eine Methode ... OHNE Namen.
+
+=============================
+
+OHNE Ref.
+
+            int value = n1;
+00007FF6E0A48E3A  mov         eax,dword ptr [n1]  
+00007FF6E0A48E40  mov         dword ptr [value],eax  
+
+Mit Ref:  == eine Adresse
+
+            int value = n1;
+00007FF70E6B8E3B  mov         rax,qword ptr [n1]  
+00007FF70E6B8E42  mov         eax,dword ptr [rax]  
+00007FF70E6B8E44  mov         dword ptr [value],eax  
+
+=========================================
+
+Lambda Funktion
+
+Lambda Objekt
+
+Jedes Lambda ist vom Typ einer (lokalen) Klasse.
+
+==> Was haben Objekte: Methoden und Instanzvariablen.
+
+=========================================
+
+Cpp Insights
+
