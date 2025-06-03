@@ -66,7 +66,7 @@ namespace ConstExprDynamicData {
 
     static void testDynamicData()
     {
-        constexpr int sum = naiveSum(10);
+        constexpr int sum = naiveSum(6);
         std::println("Sum from 1 up to 10: {}", sum);
     }
 }

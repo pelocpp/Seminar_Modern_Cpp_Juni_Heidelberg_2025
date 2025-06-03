@@ -19,6 +19,29 @@ module;
 
 module modern_cpp:const_expr;
 
+
+void test_constexpr_seminar()
+{
+    [] {};
+    []() {};
+
+    auto l = []() {};
+
+    constexpr auto l2 = [] () { return 123; } ();
+    
+    constexpr auto summe = [](int a, int b)
+        { return a + b; } (5 ,6);
+
+    // Use case for IIFE:
+// This kind of expression might be useful when you have
+// a complex initialization of a const  object:
+
+    auto constexpr ConstValue = []() {
+        /* several lines of code ... - "very complex" computation */
+        return 123;
+        } ();
+}
+
 constexpr uint8_t MY_POLYNOM = 0x07;
 constexpr int TABLE_SIZE = 256;
 

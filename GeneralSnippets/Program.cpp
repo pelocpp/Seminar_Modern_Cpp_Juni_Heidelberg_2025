@@ -36,7 +36,7 @@ int main()
         //main_concepts_requires_classes();
         //main_concepts_requires_functions();
         //main_const_variants();
-        //main_constexpr();
+       // main_constexpr();
         //main_constexpr_crc();
         //main_constructor_invocations();
         //main_copy_move_elision();
@@ -54,7 +54,7 @@ int main()
         //main_functional_programming_alternate();
         //main_generate();
         //main_generic_functions();
-        //main_initializer_list();
+      //  main_initializer_list();
         //main_input_output_streams();  
         //main_invoke();
         //main_lambdas();
@@ -105,9 +105,9 @@ int main()
         //main_variant();
         //main_virtual_base_class_destructor();
         //main_virtual_override_final();
-        main_weak_pointer();
+        //main_weak_pointer();
 
-        //main_exercises();
+        main_exercises();
     }
     catch (const std::exception& ex) {
         std::println("Exception: {}", ex.what());

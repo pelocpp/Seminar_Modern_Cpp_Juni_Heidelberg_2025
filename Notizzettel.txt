@@ -387,4 +387,293 @@ i)   std::weak_ptr
 
 ii)  Whyyyyyyyyyyyyyyyyyyyyyyy
 
+=================================================
+
+Diskussion:
+
+Observer - Observable Pattern
+------------------------------
+
+Was ist das?
+
+== Es gibt Objekte mit Zustand, die sich ändern (Wetterdaten / Aktienkurse)
+
+== Andere Objekte interessieren sich für diese Änderungen
+
+== Wording: Observable / Subject / Event Source
+            Observer   / Client
+            
+== Clients kennen die  Event Source, da sie sich für deren Änderunen interessieren
+
+== Clients melden sich an der Event Source an
+   // Interface Pointer 
+   // Client muss durch ein INterface eine Rückrufmethode bereitstellen
+
+
+== Eine Event Source verwaltet eine Liste von Clients, die beobachten wollen
+
+====================
+
+Smart Pointer:
+
+a) Event Source : Diese wird durch einen Shared Pointer angelegt
+
+b) Viele Clients: Diese wird durch einen Shared Pointer angelegt.
+
+c) Liste von Beobachtern im Subject:
+
+   Liste: Shared Pointer oder Weak Ptr
+
+   ===> Weak Ptr: Weil das Subject NICHT die
+        Verantwortung über die Clients haben sollte.
+
+        i) Pro Weak-Ptr ist lock aufzurufen
+        ii) Der Shared_ptr kann gültig sein: update
+            Der Shared_ptr kann NULL sein: ignorieren
+
+===============
+
+new:   shared_ptr
+
+int* ptr;   
+
+int* ptr1 = ptr;    // <===============
+
+shared_ptr
+ODER
+weak_ptr    Go - for - Weak_ptr
+
+===============
+
+C#:
+
+new ... // shared_ptr
+
+KEIN delete:
+
+Garbage Collection: Was ist das ???
+
+Da wir regelmäßig der Referenzzähler angeschaut:
+
+Wenn 0 , dann delete.
+
+
+
+class Node {
+
+   private:
+      std::shared_ptr<Node> left;
+      std::shared_ptr<Node> right;
+
+}
+
+=========================================
+
+STL: Container Algorithmen
+
+std::ranges  // C++ 20
+
+=========================================
+
+== Performanz
+
+== Multithreading (Posix, ...)
+
+== Multithreading-API ===> wandert in den C++ Standard rein
+
+== std::ranges  // C++ 20 // 30 Minuten max. Überblick
+
+std::sort Merge - Sort
+
+== std::find : Wie kann man den "händisch" parallelisieren.
+
+== Thread Pool
+
+== Nachrichtenwarteschlange
+
+== signal:  Latches 
+
+== Viele Prozesse wollen schreiben
+
+== std::async ===> Thread Pool
+
+== Atomic
+
+========================================================
+
+std::vector
+
+C++:
+
+==> Value-basiert  // Wert-basiert: Stack : KRITISCH
+
+==> Referenz-basiert  (&) // Referenz-basiert: Um Objekte am Stack zu manipulieren
+
+==> Heap-basiert (dynamisch):  new, delete, Pointer / Zeiger
+                                // Smart Pointer
+
+Warum ist C++ so kompliziert ???
+
+C#:  Gibt es nur new  (struct: Ausnahme) 
+
+==> Referenz-basiert (Pointer):
+
+    C#: Doppelt-indirekter Zeiger
+
+
+
+=================================================
+
+C++:   new  // 100   // 10000000000
+
+==> OS:   Page // 4096
+
+==> OS:   ::GlobalLock
+
+// =============================================
+
+Daten:
+
+std::array  // Fixed-Size
+
+std::vector // Non Fixed-Size  // Continous
+
+==============================================
+
+STL:
+
+Container
+  |||
+Iteratoren
+  |||
+Algorithmen
+
+Stilistik der STL:
+
+Programming in Building Blocks // Bausteinen.
+
+
+Andere Sprachen:  for_each
+
+   for_each ( int n : dict) {
+   }
+
+C++  11:  Range-based for-Loop:
+
+Alternative Syntax:
+
+=========================================
+
+Container:
+
+Wie kann ich diesen mit konstanten Werten vorbelegen ???
+
+Laufzeit ??????????????????????
+
+====================================
+
+std::array
+
+C-Style Array:
+
+C:    int numbers[100];
+
+C++:  std::array<int, 1000> numbers;  // HÜLLE um int numbers[100];
+
+
+
+std::vector  ===============> HEAP
+
+std::array: 
+
+
+   int numbers[100000000];
+   std::array<int, 1000000000> numbers;   // YES
+
+
+void test()
+{
+   int numbers[100000000];
+   std::array<int, 1000000000> numbers;   // NO
+}
+
+==============================================================
+
+constexpr
+
+const 
+
+Frage: Wozu können wir das gebrauchen ???
+
+==============================================================
+
+Frage: Wozu können wir das gebrauchen ???
+
+123.456f
+
+123l
+
+123ll
+
+100_euro
+
+100_kg
+
+0xFF0000_farbe   ==>   class Color
+
+0xFF0000_rgb   ==>   class Color
+
+100_kilometer
+
+auto result = 100_kilometer + 20_kilometer;
+
+auto result = 100_kilometer + 20_meter;
+
+
+// Technologische Konstanten
+
+"10:30:40"_uhrzeit
+
+"[():():()]"_uhrzeit
+
+Lexikon:   Wörter der Programmiersprache
+
+C++:  Das Lexikon von C++ ist erweiterbar.
+
+Scanner  ==>  Token des Lexikon
+Parser:  ==>  Grammatik
+
+Umsetzung:  operator"" :  Literaloperator
+
+=============================================================
+
+std::initializer_list:
+
+std::vector:            HEAP
+
+
+std::initializer_list<int>:    Light-Weight Container:
+
+begin(),
+end(),
+size()
+
+class Data
+{
+  std::initializer_list<int> data;
+}
+
+===========================================================
+
+Was ist der Spirit von  std::initializer_list ???
+
+From Heap to Stack
+
+std::string to std::string_view  (const char*)
+
+std::vector to std::initializer_list
+
+std::array to std::span [ data() und size() ]
+
+===========================================================
 

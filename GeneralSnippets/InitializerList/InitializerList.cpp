@@ -6,9 +6,33 @@ module modern_cpp:initializer_list;
 
 namespace InitializerList {
 
+
+
+    class Data
+    {
+        std::initializer_list<int> data;
+    };
+
+    void test()
+    {
+        Data d;
+    }
+
+    // Syntax: AUSSERHALB
+
+    //typ name = init_wert;
+
+    //typ name = { 1, 2, 3, 4, 5 };  // Brace Init. ODER Init. Liste
+
+
+
+
     // function using std::initializer_list
     static int adder (std::initializer_list<int> list)
     {
+        std::vector<int> result2{ list };
+
+
         int result{};
 
         std::for_each(
@@ -34,7 +58,8 @@ namespace InitializerList {
     static void test_01() {
 
         // testing functions expecting lists in function call
-        int sum = adder({ 1, 2, 3, 4, 5 });
+        int sum = adder({ 1, 2, 3, 4, 5, 6, 7, 8 , 9, 10 });
+
         std::cout << sum << std::endl;
 
         print({ 1, 2, 3, 4, 5 });
@@ -109,6 +134,9 @@ namespace InitializerList {
     };
 
     static void test_04() {
+
+        std::vector<int> vec1( 10 );  // Size: 10 // Alle Werte: 0
+        std::vector<int> vec2{ 10 };  // Size: 1 // Wert: 10
 
         TinyContainer tc0;                  // TinyContainer::TinyContainer()
         TinyContainer tc1{ 1, 2, 3, 4 };    // TinyContainer::TinyContainer(std::initializer_list<int>)
