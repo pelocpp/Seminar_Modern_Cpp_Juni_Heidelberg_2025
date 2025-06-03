@@ -97,6 +97,8 @@ namespace MoveSemantics {
 
         std::println("move c'tor");
 
+        // Wertzuweisungen
+
         m_data = data.m_data;   // shallow copy
         m_size = data.m_size;
         data.m_data = nullptr;  // reset source object, ownership has been moved
@@ -176,6 +178,10 @@ namespace MoveSemantics {
         std::vector<BigData> vec;
 
         vec.push_back(BigData(10, 1));
+
+        // intern: Wenn vergroessert werden muss
+
+        vec.push_back(BigData(20, 2));
     }
 
     static void test_03_demonstrate_move_assignment() {
@@ -206,11 +212,11 @@ namespace MoveSemantics {
 void main_move_semantics()
 {
     using namespace MoveSemantics;
-    test_01_move_semantics();
+    //test_01_move_semantics();
     test_02_demonstrate_move_ctor();
-    test_03_demonstrate_move_assignment();
-    test_04_demonstrate_move_assignment();
-    test_05_demonstrate_missing_noexept();
+    //test_03_demonstrate_move_assignment();
+    //test_04_demonstrate_move_assignment();
+    //test_05_demonstrate_missing_noexept();
 }
 
 // =====================================================================================

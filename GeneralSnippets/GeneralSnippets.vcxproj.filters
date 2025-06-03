@@ -654,6 +654,12 @@
     <ClCompile Include="Algorithms\Module_Algorithms.ixx">
       <Filter>Modules</Filter>
     </ClCompile>
+    <ClCompile Include="RAII_01.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RAII_Clipboard.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\Readme.md">

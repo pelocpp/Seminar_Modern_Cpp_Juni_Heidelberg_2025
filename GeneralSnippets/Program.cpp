@@ -48,7 +48,7 @@ int main()
         //main_expression_templates();
         //main_exception_safety();
         //main_explicit_keyword();
-        //main_folding();
+        main_folding();
         //main_functional_programming_ranges();
         //main_functional_programming();
         //main_functional_programming_alternate();
@@ -66,7 +66,7 @@ int main()
         //main_metaprogramming_02(); 
         //main_modularized_standard_library(); 
         //main_modules();
-        //main_move_semantics();
+      //  main_move_semantics();
         //main_optional();
         //main_perfect_forwarding();
         //main_placement_new();
@@ -107,7 +107,7 @@ int main()
         //main_virtual_override_final();
         //main_weak_pointer();
 
-        main_exercises();
+      //  main_exercises();
     }
     catch (const std::exception& ex) {
         std::println("Exception: {}", ex.what());

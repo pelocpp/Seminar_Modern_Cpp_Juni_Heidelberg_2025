@@ -677,3 +677,48 @@ std::array to std::span [ data() und size() ]
 
 ===========================================================
 
+noexcept
+
+==================================================
+
+RAII
+
+Resources:
+
+open / close
+
+Attach / Detach
+
+CreateThread / ReleaseHandle
+
+// open / close
+
+SqlConnection // release
+
+Idee:   Hüllenobjekt
+
+Konstruktor:  open
+Destruktor:   release
+
+====================================================
+
+C++ 11 // C++ 17:
+
+Schärfsten Optimierungen:   Folding Ausdruck.
+
+"Nicht ganz einfach"  ...
+
+Ausdrücke:   Mit EINEM Operator.
+
+int a;
+int b;
+...
+
+int result = ((a + b) + c) + d + e + f;
+
+Führt nicht zu einem Folding Ausdruck.
+
+Muss Parameter Pack zusammenstellen:   Syntax:  Pack Operator: ... Ellipses
+
+
+

@@ -8,6 +8,53 @@ module;
 
 module modern_cpp:folding;
 
+namespace FoldingSeminar {
+
+
+    // Pack
+
+    template <typename ... T>  // int, int, int, int, int: einpacken
+    
+    auto addierer(T ... arg) {   // 1, 2, 3,4, 5: einpacken
+
+        auto result = ( ...  +  arg  );
+        return result;
+    }
+
+    template <typename ... T>  // int, int, int, int, int: einpacken
+
+    auto addiererClassic(T ... arg) {   // 1, 2, 3,4, 5: einpacken
+
+        // for_each
+
+        int sum{};
+
+        for ( auto elem : { arg ... }) {
+            sum += elem;
+        }
+
+        return sum;
+    }
+
+    void test_folding_seminar() {
+
+        auto x = 123.123;
+
+        auto xx = 0;
+
+        unsigned char ch = '?';
+        auto ch = (unsigned char) '?';
+
+        // Type Deduction
+        auto result = addiererClassic(1, 2, 3, 4, 5, 6, 7, 8, 9);
+    }
+
+}
+
+
+
+
+
 namespace Folding {
 
     /* folding examples: introduction
@@ -151,7 +198,7 @@ namespace Folding {
     }
 
     //constexpr size_t MaxIterations = 100'000'000;   // release
-    constexpr size_t MaxIterations = 100'000'000;       // debug
+    constexpr size_t MaxIterations = 300'000'000;       // debug
 
     static void test_06_benchmark_folding() {
 
@@ -175,7 +222,7 @@ namespace Folding {
 
         ScopedTimer watch{ };
 
-        size_t total{};
+        volatile size_t total{};
 
         for (size_t i{}; i != MaxIterations; ++i) {
             auto sum{ addFolding(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) };
@@ -189,7 +236,7 @@ namespace Folding {
 
         ScopedTimer watch{ };
 
-        size_t total{};
+        volatile size_t total{};
 
         for (size_t i{}; i != MaxIterations; ++i) {
             auto sum{ addIterating(1, 2, 3, 4, 5, 6, 7, 8, 9, 10) };
@@ -200,22 +247,28 @@ namespace Folding {
     }
 }
 
+
+
 void main_folding()
 {
+    using namespace FoldingSeminar;
+    test_folding_seminar();
+    return;
+
     using namespace Folding;
-    test_01();
-    test_02();
-    test_03a();
-    test_03b();
-    test_03c();
-    test_03d();
-    test_04();
-    test_05();
+    //test_01();
+    //test_02();
+    //test_03a();
+    //test_03b();
+    //test_03c();
+    //test_03d();
+    //test_04();
+    //test_05();
     
     // Benchmarks: need to switch to nano seconds! 
     // Optimizer in Release mode is very aggressive
-    test_06_benchmark_folding();
-    test_06_benchmark_iterating();
+    //test_06_benchmark_folding();
+    //test_06_benchmark_iterating();
     size_t result1{ test_06_benchmark_folding_02() };
     size_t result2{ test_06_benchmark_iterating_02() };
     std::println("Result1: {}", result1);
